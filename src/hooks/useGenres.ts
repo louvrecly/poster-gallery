@@ -10,7 +10,6 @@ const useGenres = () => {
   useEffect(() => {
     setIsLoading(true);
     getMovieGenres().then((res) => {
-      console.log(res.genres);
       setGenres(res.genres);
       setIsLoading(false);
     });
