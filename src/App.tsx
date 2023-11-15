@@ -46,6 +46,7 @@ function App() {
       <NavBar />
 
       <Container
+        maxWidth="lg"
         sx={{
           py: 2,
           flexGrow: 1,
@@ -63,11 +64,13 @@ function App() {
         )}
       </Container>
 
-      <PageControl
-        currentPage={currentPage}
-        pageCount={pageCount}
-        navigateToPage={setCurrentPage}
-      />
+      <Container maxWidth="lg">
+        <PageControl
+          currentPage={currentPage}
+          pageCount={pageCount}
+          navigateToPage={setCurrentPage}
+        />
+      </Container>
     </>
   );
 }
