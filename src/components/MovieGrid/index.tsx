@@ -1,9 +1,9 @@
 import Grid from '@mui/material/Grid';
 import MovieCard from './MovieCard';
-import { MovieData } from '../../types/movie';
+import Movie from '../../types/movie';
 
 interface MovieGridProps {
-  movies: MovieData[];
+  movies: Movie[];
 }
 
 const MovieGrid = ({ movies }: MovieGridProps) => {
@@ -13,12 +13,13 @@ const MovieGrid = ({ movies }: MovieGridProps) => {
         <Grid key={movie.id} item xs={12} sm={6} md={3}>
           <MovieCard
             title={movie.title}
-            posterPath={movie.poster_path}
-            releaseDate={new Date(movie.release_date)}
+            posterPath={movie.posterPath}
+            releaseDate={movie.releaseDate}
+            genres={movie.genres}
+            originalLanguage={movie.originalLanguage}
             overview={movie.overview}
-            originalLanguage={movie.original_language}
-            voteAverage={movie.vote_average}
-            voteCount={movie.vote_count}
+            voteAverage={movie.voteAverage}
+            voteCount={movie.voteCount}
           />
         </Grid>
       ))}
