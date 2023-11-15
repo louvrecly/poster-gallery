@@ -1,7 +1,9 @@
+import { Link as RouterLink } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Stack from '@mui/material/Stack';
+import Link from '@mui/material/Link';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Genre from '../../types/genre';
@@ -50,9 +52,13 @@ const MovieCard = ({
             divider={<Divider orientation="vertical" flexItem />}
           >
             {genres.map((genre) => (
-              <Typography key={genre.id} variant="subtitle2">
-                {genre.name}
-              </Typography>
+              <Link
+                key={genre.id}
+                component={RouterLink}
+                to={`/genre/${genre.id}`}
+              >
+                <Typography variant="subtitle2">{genre.name}</Typography>
+              </Link>
             ))}
           </Stack>
 
