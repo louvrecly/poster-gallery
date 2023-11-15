@@ -1,3 +1,5 @@
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import MovieCard from './MovieCard';
 import Movie from '../../types/movie';
@@ -7,6 +9,15 @@ interface MovieGridProps {
 }
 
 const MovieGrid = ({ movies }: MovieGridProps) => {
+  if (!movies.length)
+    return (
+      <Container>
+        <Typography variant="h6" align="center">
+          No movie found.
+        </Typography>
+      </Container>
+    );
+
   return (
     <Grid container spacing={2}>
       {movies.map((movie) => (
