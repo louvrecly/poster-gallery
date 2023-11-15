@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { getMovieGenres } from '../api/movies';
-import Genre, { createGenreMap } from '../types/genre';
+import Genre from '../types/genre';
+import { createGenreMap } from '../helpers/movies';
 
 const useGenres = () => {
   const [isLoading, setIsLoading] = useState(true);
