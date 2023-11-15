@@ -1,3 +1,4 @@
+import Genre from '../types/genre';
 import { MovieData } from '../types/movie';
 
 const TMDB_API_URL = import.meta.env.VITE_TMDB_API_URL;
@@ -28,5 +29,23 @@ export async function discoverMovies(
   } catch (err) {
     console.log({ err });
     return emptyDiscoverResponse;
+  }
+}
+
+type GenresResponse = {
+  genres: Genre[];
+};
+
+const emptyGenresResponse: GenresResponse = { genres: [] };
+
+export async function getMovieGenres(): Promise<GenresResponse> {
+  try {
+    const res = await fetch(
+      `${TMDB_API_URL}/3/genre/movie/list?api_key=${TMDB_API_KEY}`,
+    );
+    return res.json();
+  } catch (err) {
+    console.log({ err });
+    return emptyGenresResponse;
   }
 }
