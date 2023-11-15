@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Icon from '@mui/material/Icon';
 import { discoverMovies } from './api/movies';
 
 function App() {
@@ -20,7 +21,9 @@ function App() {
 
   return (
     <>
-      <h1>Poster Gallery</h1>
+      <h1>
+        <Icon fontSize="large">movie</Icon> Poster Gallery
+      </h1>
 
       <div>{isLoading ? 'Loading' : JSON.stringify(movies)}</div>
 
