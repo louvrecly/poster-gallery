@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import useSearchMovies from '../hooks/useSearchMovies';
 import MovieListView from '../components/MovieListView';
+import NotFound from './not-found';
 
 type GenrePageParams = {
   genreId: string;
@@ -11,8 +12,6 @@ type GenrePageParams = {
 const GenrePage = () => {
   const params = useParams<GenrePageParams>();
   const genreId = parseInt(params.genreId ?? '');
-
-  const navigate = useNavigate();
 
   const {
     movies,
@@ -26,7 +25,7 @@ const GenrePage = () => {
 
   const genre = useMemo(() => genreMap[genreId], [genreId, genreMap]);
 
-  if (!isLoadingGenres && !genre) return navigate('/');
+  if (!isLoadingGenres && !genre) return <NotFound />;
 
   return (
     <>
