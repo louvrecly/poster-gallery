@@ -19,12 +19,13 @@ const emptyDiscoverResponse: DiscoverResponse = {
 };
 
 export async function discoverMovies(
+  keyword: string = '',
   genreId: number = -1,
   page: number = 1,
 ): Promise<DiscoverResponse> {
   try {
     const res = await fetch(
-      `${TMDB_API_URL}/3/discover/movie?sort_by=popularity.desc&api_key=${TMDB_API_KEY}&page=${page}${
+      `${TMDB_API_URL}/3/discover/movie?sort_by=popularity.desc&api_key=${TMDB_API_KEY}&with_keywords=${keyword}&page=${page}${
         genreId > 0 ? `&with_genres=${genreId}` : ''
       }`,
     );

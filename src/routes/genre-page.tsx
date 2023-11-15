@@ -1,5 +1,7 @@
-import { useParams } from 'react-router-dom';
-import useMoviesByGenreId from '../hooks/useMoviesByGenreId';
+import { useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import Typography from '@mui/material/Typography';
+import useSearchMovies from '../hooks/useSearchMovies';
 import MovieListView from '../components/MovieListView';
 
 type GenrePageParams = {
@@ -9,17 +11,37 @@ type GenrePageParams = {
 const GenrePage = () => {
   const params = useParams<GenrePageParams>();
   const genreId = parseInt(params.genreId ?? '');
-  const { movies, currentPage, pageCount, isLoading, setCurrentPage } =
-    useMoviesByGenreId(genreId);
+
+  const navigate = useNavigate();
+
+  const {
+    movies,
+    currentPage,
+    pageCount,
+    genreMap,
+    isLoading,
+    isLoadingGenres,
+    setCurrentPage,
+  } = useSearchMovies('', genreId);
+
+  const genre = useMemo(() => genreMap[genreId], [genreId, genreMap]);
+
+  if (!isLoadingGenres && !genre) return navigate('/');
 
   return (
-    <MovieListView
-      movies={movies}
-      isLoading={isLoading}
-      currentPage={currentPage}
-      pageCount={pageCount}
-      setCurrentPage={setCurrentPage}
-    />
+    <>
+      <Typography variant="h6" sx={{ pt: 2 }}>
+        {isLoadingGenres ? 'Loading...' : `Genre - ${genre.name}`}
+      </Typography>
+
+      <MovieListView
+        movies={movies}
+        isLoading={isLoading}
+        currentPage={currentPage}
+        pageCount={pageCount}
+        setCurrentPage={setCurrentPage}
+      />
+    </>
   );
 };
 

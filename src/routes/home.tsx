@@ -1,9 +1,13 @@
-import useMoviesByGenreId from '../hooks/useMoviesByGenreId';
+import { useSearchParams } from 'react-router-dom';
+import useSearchMovies from '../hooks/useSearchMovies';
 import MovieListView from '../components/MovieListView';
 
 const Home = () => {
+  const [searchParams] = useSearchParams();
+  const keyword = searchParams.get('keyword');
+
   const { movies, currentPage, pageCount, isLoading, setCurrentPage } =
-    useMoviesByGenreId();
+    useSearchMovies(keyword ?? '');
 
   return (
     <MovieListView

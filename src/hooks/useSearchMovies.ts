@@ -3,7 +3,7 @@ import useGenres from './useGenres';
 import useMovieData from './useMovieData';
 import { parseMovieData } from '../types/movie';
 
-const useMoviesByGenreId = (genreId: number = -1) => {
+const useSearchMovies = (keyword: string = '', genreId: number = -1) => {
   const { genreMap, isLoadingGenres } = useGenres();
 
   const {
@@ -12,7 +12,7 @@ const useMoviesByGenreId = (genreId: number = -1) => {
     currentPage,
     isLoadingMovieData,
     setCurrentPage,
-  } = useMovieData(genreId);
+  } = useMovieData(keyword, genreId);
 
   const isLoading = useMemo(
     () => isLoadingGenres || isLoadingMovieData,
@@ -24,7 +24,16 @@ const useMoviesByGenreId = (genreId: number = -1) => {
     [genreMap, movieData],
   );
 
-  return { movies, pageCount, currentPage, isLoading, setCurrentPage };
+  return {
+    movies,
+    pageCount,
+    currentPage,
+    genreMap,
+    isLoading,
+    isLoadingGenres,
+    isLoadingMovieData,
+    setCurrentPage,
+  };
 };
 
-export default useMoviesByGenreId;
+export default useSearchMovies;
