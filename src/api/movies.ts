@@ -1,3 +1,5 @@
+import { MovieData } from '../types/movie';
+
 const TMDB_API_URL = import.meta.env.VITE_TMDB_API_URL;
 const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
@@ -5,7 +7,7 @@ type DiscoverResponse = {
   page: number;
   total_pages: number;
   total_results: number;
-  results: Record<string, unknown>[];
+  results: MovieData[];
 };
 
 const emptyDiscoverResponse: DiscoverResponse = {
