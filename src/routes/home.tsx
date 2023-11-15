@@ -24,7 +24,7 @@ const Home = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    discoverMovies(currentPage).then((res) => {
+    discoverMovies(-1, currentPage).then((res) => {
       setPageCount(res.total_pages);
       setMovieItems(res.results);
       setIsLoading(false);
