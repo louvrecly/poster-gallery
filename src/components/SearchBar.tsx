@@ -8,6 +8,7 @@ import Icon from '@mui/material/Icon';
 type SearchBarSubmitEvent = FormEvent<HTMLFormElement> & {
   target: HTMLFormElement & { 0: HTMLInputElement };
 };
+
 const SearchBar = () => {
   const [searchParams] = useSearchParams();
   const keyword = searchParams.get('keyword');
