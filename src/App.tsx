@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import Icon from '@mui/material/Icon';
+import CssBaseline from '@mui/material/CssBaseline';
+import NavBar from './components/NavBar';
 import { discoverMovies } from './api/movies';
 
 function App() {
@@ -21,9 +22,9 @@ function App() {
 
   return (
     <>
-      <h1>
-        <Icon fontSize="large">movie</Icon> Poster Gallery
-      </h1>
+      <CssBaseline />
+
+      <NavBar />
 
       <div>{isLoading ? 'Loading' : JSON.stringify(movies)}</div>
 
