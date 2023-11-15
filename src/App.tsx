@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import NavBar from './components/NavBar';
+import PageControl from './components/PageControl';
 import { discoverMovies } from './api/movies';
 
 function App() {
@@ -28,23 +29,11 @@ function App() {
 
       <div>{isLoading ? 'Loading' : JSON.stringify(movies)}</div>
 
-      <div>
-        <button
-          onClick={() => currentPage > 1 && setCurrentPage((page) => page - 1)}
-          disabled={currentPage <= 1}
-        >
-          Previous
-        </button>
-        {currentPage} / {pageCount}
-        <button
-          onClick={() =>
-            currentPage < pageCount && setCurrentPage((page) => page + 1)
-          }
-          disabled={currentPage >= pageCount}
-        >
-          next
-        </button>
-      </div>
+      <PageControl
+        currentPage={currentPage}
+        pageCount={pageCount}
+        navigateToPage={setCurrentPage}
+      />
     </>
   );
 }
