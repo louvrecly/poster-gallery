@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 
 const NavBar = () => {
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="sticky">
       <Toolbar>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <Icon fontSize="medium">movie</Icon>
