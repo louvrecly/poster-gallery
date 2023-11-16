@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { MovieData } from '../types/movie';
-import { searchMoviesByGenreId, searchMoviesByKeyword } from '../api/movies';
+import { searchMovies } from '../api/movies';
 import { useErrorBoundary } from 'react-error-boundary';
 
 const useMovieData = (
@@ -18,23 +18,13 @@ const useMovieData = (
 
     setIsLoading(true);
 
-    if (!keyword) {
-      searchMoviesByGenreId(genreId, currentPage)
-        .then((res) => {
-          setPageCount(res.total_pages);
-          setMovieData(res.results);
-        })
-        .catch(showBoundary)
-        .finally(() => setIsLoading(false));
-    } else {
-      searchMoviesByKeyword(keyword, currentPage)
-        .then((res) => {
-          setPageCount(res.total_pages);
-          setMovieData(res.results);
-        })
-        .catch(showBoundary)
-        .finally(() => setIsLoading(false));
-    }
+    searchMovies(keyword, genreId, currentPage)
+      .then((res) => {
+        setPageCount(res.total_pages);
+        setMovieData(res.results);
+      })
+      .catch(showBoundary)
+      .finally(() => setIsLoading(false));
   }, [currentPage, genreId, keyword, showBoundary]);
 
   return {
