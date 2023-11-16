@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { MovieData } from '../types/movie';
-import { discoverMovies, searchMoviesByKeyword } from '../api/movies';
+import { searchMoviesByGenreId, searchMoviesByKeyword } from '../api/movies';
 
 const useMovieData = (
   keyword: string = '',
@@ -16,7 +16,7 @@ const useMovieData = (
 
     setIsLoading(true);
     if (!keyword) {
-      discoverMovies(keyword, genreId, currentPage).then((res) => {
+      searchMoviesByGenreId(genreId, currentPage).then((res) => {
         setPageCount(res.total_pages);
         setMovieData(res.results);
         setIsLoading(false);

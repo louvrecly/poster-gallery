@@ -18,14 +18,13 @@ const emptyMovieListResponse: MovieListResponse = {
   results: [],
 };
 
-export async function discoverMovies(
-  keyword: string = '',
+export async function searchMoviesByGenreId(
   genreId: number = -1,
   page: number = 1,
 ): Promise<MovieListResponse> {
   try {
     const res = await fetch(
-      `${TMDB_API_URL}/3/discover/movie?api_key=${TMDB_API_KEY}&with_keywords=${keyword}&page=${page}${
+      `${TMDB_API_URL}/3/discover/movie?api_key=${TMDB_API_KEY}&page=${page}${
         genreId > 0 ? `&with_genres=${genreId}` : ''
       }&sort_by=popularity.desc`,
     );
