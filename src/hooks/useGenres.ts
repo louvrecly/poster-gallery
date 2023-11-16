@@ -14,8 +14,8 @@ const useGenres = () => {
     setIsLoading(true);
     getMovieGenres()
       .then((res) => setGenres(res.genres))
-      .catch(showBoundary);
-    setIsLoading(false);
+      .catch(showBoundary)
+      .finally(() => setIsLoading(false));
   }, [showBoundary]);
 
   return { genres, genreMap, isLoadingGenres: isLoading };
