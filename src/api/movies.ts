@@ -1,4 +1,4 @@
-import { GenresResponse, SearchMoviesResponse } from '../types/tmdb';
+import { GetGenresResponse, SearchMoviesResponse } from '../types/tmdb';
 
 const TMDB_API_URL = import.meta.env.VITE_TMDB_API_URL;
 const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -35,7 +35,7 @@ export async function searchMovies(
   return searchMoviesByKeyword(keyword, page);
 }
 
-export async function getMovieGenres(): Promise<GenresResponse> {
+export async function getMovieGenres(): Promise<GetGenresResponse> {
   const res = await fetch(
     `${TMDB_API_URL}/3/genre/movie/list?api_key=${TMDB_API_KEY}`,
   );

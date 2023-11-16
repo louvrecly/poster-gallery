@@ -14,6 +14,6 @@ export type SearchMoviesResponse = {
   results: MovieData[];
 };
 
-export type GenresResponse = {
+export type GetGenresResponse = {
   genres: Genre[];
 };
