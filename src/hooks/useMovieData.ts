@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { MovieData } from '../types/movie';
 import { searchMoviesByGenreId, searchMoviesByKeyword } from '../api/movies';
+import { useErrorBoundary } from 'react-error-boundary';
 
 const useMovieData = (
   keyword: string = '',
@@ -10,25 +11,31 @@ const useMovieData = (
   const [isLoading, setIsLoading] = useState(true);
   const [pageCount, setPageCount] = useState(1);
   const [movieData, setMovieData] = useState<MovieData[]>([]);
+  const { showBoundary } = useErrorBoundary();
 
   useEffect(() => {
     if (!keyword && genreId === -1) return;
 
     setIsLoading(true);
+
     if (!keyword) {
-      searchMoviesByGenreId(genreId, currentPage).then((res) => {
-        setPageCount(res.total_pages);
-        setMovieData(res.results);
-        setIsLoading(false);
-      });
+      searchMoviesByGenreId(genreId, currentPage)
+        .then((res) => {
+          setPageCount(res.total_pages);
+          setMovieData(res.results);
+        })
+        .catch(showBoundary)
+        .finally(() => setIsLoading(false));
     } else {
-      searchMoviesByKeyword(keyword, currentPage).then((res) => {
-        setPageCount(res.total_pages);
-        setMovieData(res.results);
-        setIsLoading(false);
-      });
+      searchMoviesByKeyword(keyword, currentPage)
+        .then((res) => {
+          setPageCount(res.total_pages);
+          setMovieData(res.results);
+        })
+        .catch(showBoundary)
+        .finally(() => setIsLoading(false));
     }
-  }, [currentPage, genreId, keyword]);
+  }, [currentPage, genreId, keyword, showBoundary]);
 
   return {
     movieData,

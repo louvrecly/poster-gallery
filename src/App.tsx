@@ -1,9 +1,11 @@
 import { Outlet } from 'react-router-dom';
+import { ErrorBoundary } from 'react-error-boundary';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import NavBar from './components/NavBar';
 import GenresProvider from './components/GenresProvider';
 import Stack from '@mui/material/Stack';
+import ErrorDisplay from './components/ErrorDisplay';
 
 function App() {
   return (
@@ -24,9 +26,11 @@ function App() {
           flexDirection: 'column',
         }}
       >
-        <GenresProvider>
-          <Outlet />
-        </GenresProvider>
+        <ErrorBoundary FallbackComponent={ErrorDisplay}>
+          <GenresProvider>
+            <Outlet />
+          </GenresProvider>
+        </ErrorBoundary>
       </Container>
     </Stack>
   );
