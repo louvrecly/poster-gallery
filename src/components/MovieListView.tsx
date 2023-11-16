@@ -26,7 +26,7 @@ const MovieListView = ({
 
   return (
     <>
-      <GenreList genres={genres} genreId={genreId} />
+      <GenreList genres={genres} genreId={genreId} justifyContent="center" />
 
       <Container
         disableGutters

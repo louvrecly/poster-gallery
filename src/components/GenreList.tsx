@@ -6,11 +6,22 @@ import Genre from '../types/genre';
 interface GenreListProps {
   genres: Genre[];
   genreId?: number;
+  justifyContent?: string;
 }
 
-const GenreList = ({ genres, genreId = -1 }: GenreListProps) => {
+const GenreList = ({
+  genres,
+  genreId = -1,
+  justifyContent = 'auto',
+}: GenreListProps) => {
   return (
-    <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+    <Stack
+      direction="row"
+      justifyContent={justifyContent}
+      spacing={1}
+      flexWrap="wrap"
+      useFlexGap
+    >
       {genres.map((genre) => (
         <Button
           key={genre.id}

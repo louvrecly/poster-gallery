@@ -33,7 +33,7 @@ const GenrePage = () => {
 
   return (
     <>
-      <Typography variant="h6" sx={{ pb: 1 }}>
+      <Typography variant="h4" sx={{ pb: 1 }} align="center">
         Genre - {isLoadingGenres ? 'Loading...' : genre.name}
       </Typography>
 
