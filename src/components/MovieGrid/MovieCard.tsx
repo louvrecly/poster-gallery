@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -5,6 +6,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Genre from '../../types/genre';
 import GenreList from '../GenreList';
+import GenresContext from '../../contexts/genres';
 
 const TMDB_IMAGE_URL = import.meta.env.VITE_TMDB_IMAGE_URL;
 
@@ -17,7 +19,6 @@ interface MovieCardProps {
   overview: string;
   voteAverage: number;
   voteCount: number;
-  genreId?: number;
 }
 
 const MovieCard = ({
@@ -29,8 +30,9 @@ const MovieCard = ({
   overview,
   voteAverage,
   voteCount,
-  genreId = -1,
 }: MovieCardProps) => {
+  const { genreId } = useContext(GenresContext);
+
   return (
     <Card raised>
       <CardMedia

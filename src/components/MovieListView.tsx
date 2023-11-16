@@ -12,7 +12,6 @@ interface MovieListViewProps {
   isLoading: boolean;
   currentPage: number;
   pageCount: number;
-  genreId?: number;
   navigateToPage: (page: number) => void;
 }
 
@@ -21,10 +20,9 @@ const MovieListView = ({
   isLoading,
   currentPage,
   pageCount,
-  genreId = -1,
   navigateToPage,
 }: MovieListViewProps) => {
-  const { genres } = useContext(GenresContext);
+  const { genres, genreId } = useContext(GenresContext);
 
   return (
     <>
@@ -45,7 +43,7 @@ const MovieListView = ({
             Loading...
           </Typography>
         ) : (
-          <MovieGrid movies={movies} genreId={genreId} />
+          <MovieGrid movies={movies} />
         )}
       </Container>
 

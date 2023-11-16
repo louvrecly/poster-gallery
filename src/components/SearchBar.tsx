@@ -11,7 +11,7 @@ type SearchBarSubmitEvent = FormEvent<HTMLFormElement> & {
 
 const SearchBar = () => {
   const [searchParams] = useSearchParams();
-  const keyword = searchParams.get('keyword');
+  const keyword = searchParams.get('keyword') ?? '';
 
   const navigate = useNavigate();
 
