@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import Icon from '@mui/material/Icon';
 import IconButton from '@mui/material/IconButton';
-import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 interface PageControlProps {
   currentPage: number;
@@ -14,8 +14,6 @@ const PageControl = ({
   pageCount,
   navigateToPage,
 }: PageControlProps) => {
-  const pages = Array.from(Array(pageCount).keys()).map((key) => key + 1);
-
   return (
     <Stack
       direction="row"
@@ -31,26 +29,9 @@ const PageControl = ({
         <Icon>arrow_left</Icon>
       </IconButton>
 
-      <Stack
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        flexGrow={1}
-        spacing={1}
-        sx={{ overflow: 'auto' }}
-      >
-        {pages.map((page) => (
-          <Button
-            key={page}
-            color="primary"
-            onClick={() => navigateToPage(page)}
-            disabled={currentPage === page}
-            sx={{ p: 0 }}
-          >
-            {page}
-          </Button>
-        ))}
-      </Stack>
+      <Typography variant="subtitle1" align="center">
+        {currentPage} / {pageCount}
+      </Typography>
 
       <IconButton
         color="primary"
