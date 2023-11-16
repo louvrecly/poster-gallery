@@ -8,7 +8,7 @@ const useSearchMovies = (
   genreId: number = -1,
   currentPage: number = 1,
 ) => {
-  const { genreMap, isLoadingGenres } = useGenres();
+  const { genres, genreMap, isLoadingGenres } = useGenres();
 
   const { movieData, pageCount, isLoadingMovieData } = useMovieData(
     keyword,
@@ -29,6 +29,7 @@ const useSearchMovies = (
   return {
     movies,
     pageCount,
+    genres,
     genreMap,
     isLoading,
     isLoadingGenres,

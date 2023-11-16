@@ -6,9 +6,10 @@ import Movie from '../../types/movie';
 
 interface MovieGridProps {
   movies: Movie[];
+  genreId?: number;
 }
 
-const MovieGrid = ({ movies }: MovieGridProps) => {
+const MovieGrid = ({ movies, genreId = -1 }: MovieGridProps) => {
   if (!movies.length)
     return (
       <Container>
@@ -31,6 +32,7 @@ const MovieGrid = ({ movies }: MovieGridProps) => {
             overview={movie.overview}
             voteAverage={movie.voteAverage}
             voteCount={movie.voteCount}
+            genreId={genreId}
           />
         </Grid>
       ))}

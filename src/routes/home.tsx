@@ -8,7 +8,7 @@ const Home = () => {
   const keyword = searchParams.get('keyword');
   const { currentPage, setCurrentPage } = usePageQuery();
 
-  const { movies, pageCount, isLoading } = useSearchMovies(
+  const { movies, pageCount, isLoading, genres } = useSearchMovies(
     keyword ?? '',
     -1,
     currentPage,
@@ -20,6 +20,7 @@ const Home = () => {
       isLoading={isLoading}
       currentPage={currentPage}
       pageCount={pageCount}
+      genres={genres}
       navigateToPage={setCurrentPage}
     />
   );

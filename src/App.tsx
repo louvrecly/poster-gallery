@@ -13,6 +13,7 @@ function App() {
       <Container
         maxWidth="lg"
         sx={{
+          py: 2,
           flexGrow: 1,
           display: 'flex',
           flexDirection: 'column',

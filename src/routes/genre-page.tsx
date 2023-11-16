@@ -12,10 +12,10 @@ type GenrePageParams = {
 
 const GenrePage = () => {
   const params = useParams<GenrePageParams>();
-  const genreId = parseInt(params.genreId ?? '');
+  const genreId = parseInt(params.genreId ?? '-1');
   const { currentPage, setCurrentPage } = usePageQuery();
 
-  const { movies, pageCount, genreMap, isLoading, isLoadingGenres } =
+  const { movies, pageCount, genres, genreMap, isLoading, isLoadingGenres } =
     useSearchMovies('', genreId);
 
   const genre = useMemo(() => genreMap[genreId], [genreId, genreMap]);
@@ -24,7 +24,7 @@ const GenrePage = () => {
 
   return (
     <>
-      <Typography variant="h6" sx={{ pt: 2 }}>
+      <Typography variant="h6" sx={{ pb: 1 }}>
         {isLoadingGenres ? 'Loading...' : `Genre - ${genre.name}`}
       </Typography>
 
@@ -33,6 +33,8 @@ const GenrePage = () => {
         isLoading={isLoading}
         currentPage={currentPage}
         pageCount={pageCount}
+        genres={genres}
+        genreId={genreId}
         navigateToPage={setCurrentPage}
       />
     </>

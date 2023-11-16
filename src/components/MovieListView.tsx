@@ -3,12 +3,16 @@ import Typography from '@mui/material/Typography';
 import MovieGrid from './MovieGrid';
 import PageControl from './PageControl';
 import Movie from '../types/movie';
+import GenreList from './GenreList';
+import Genre from '../types/genre';
 
 interface MovieListViewProps {
   movies: Movie[];
   isLoading: boolean;
   currentPage: number;
   pageCount: number;
+  genres: Genre[];
+  genreId?: number;
   navigateToPage: (page: number) => void;
 }
 
@@ -17,10 +21,14 @@ const MovieListView = ({
   isLoading,
   currentPage,
   pageCount,
+  genres,
+  genreId = -1,
   navigateToPage,
 }: MovieListViewProps) => {
   return (
     <>
+      <GenreList genres={genres} genreId={genreId} />
+
       <Container
         disableGutters
         sx={{
@@ -36,7 +44,7 @@ const MovieListView = ({
             Loading...
           </Typography>
         ) : (
-          <MovieGrid movies={movies} />
+          <MovieGrid movies={movies} genreId={genreId} />
         )}
       </Container>
 

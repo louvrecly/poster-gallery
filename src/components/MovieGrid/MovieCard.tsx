@@ -17,6 +17,7 @@ interface MovieCardProps {
   overview: string;
   voteAverage: number;
   voteCount: number;
+  genreId?: number;
 }
 
 const MovieCard = ({
@@ -28,6 +29,7 @@ const MovieCard = ({
   overview,
   voteAverage,
   voteCount,
+  genreId = -1,
 }: MovieCardProps) => {
   return (
     <Card raised>
@@ -44,7 +46,7 @@ const MovieCard = ({
             {releaseDate.toLocaleDateString()}
           </Typography>
 
-          <GenreList genres={genres} />
+          <GenreList genres={genres} genreId={genreId} />
 
           <Typography variant="subtitle2">
             Original Language: {originalLanguage.toUpperCase()}
