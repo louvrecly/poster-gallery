@@ -1,10 +1,11 @@
-import { useMemo } from 'react';
+import { useMemo, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import useSearchMovies from '../hooks/useSearchMovies';
 import MovieListView from '../components/MovieListView';
 import NotFound from './not-found';
 import usePageQuery from '../hooks/usePageQuery';
+import GenresContext from '../contexts/genres';
 
 type GenrePageParams = {
   genreId: string;
@@ -15,8 +16,12 @@ const GenrePage = () => {
   const genreId = parseInt(params.genreId ?? '-1');
   const { currentPage, setCurrentPage } = usePageQuery();
 
-  const { movies, pageCount, genres, genreMap, isLoading, isLoadingGenres } =
-    useSearchMovies('', genreId);
+  const { movies, pageCount, isLoading, isLoadingGenres } = useSearchMovies(
+    '',
+    genreId,
+  );
+
+  const { genreMap } = useContext(GenresContext);
 
   const genre = useMemo(() => genreMap[genreId], [genreId, genreMap]);
 
@@ -33,7 +38,6 @@ const GenrePage = () => {
         isLoading={isLoading}
         currentPage={currentPage}
         pageCount={pageCount}
-        genres={genres}
         genreId={genreId}
         navigateToPage={setCurrentPage}
       />

@@ -1,14 +1,14 @@
-import { useMemo } from 'react';
-import useGenres from './useGenres';
+import { useMemo, useContext } from 'react';
 import useMovieData from './useMovieData';
 import { parseMovieData } from '../helpers/movies';
+import GenresContext from '../contexts/genres';
 
 const useSearchMovies = (
   keyword: string = '',
   genreId: number = -1,
   currentPage: number = 1,
 ) => {
-  const { genres, genreMap, isLoadingGenres } = useGenres();
+  const { genreMap, isLoadingGenres } = useContext(GenresContext);
 
   const { movieData, pageCount, isLoadingMovieData } = useMovieData(
     keyword,
@@ -29,8 +29,6 @@ const useSearchMovies = (
   return {
     movies,
     pageCount,
-    genres,
-    genreMap,
     isLoading,
     isLoadingGenres,
     isLoadingMovieData,

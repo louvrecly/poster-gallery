@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import NavBar from './components/NavBar';
+import GenresProvider from './components/GenresProvider';
 
 function App() {
   return (
@@ -19,7 +20,9 @@ function App() {
           flexDirection: 'column',
         }}
       >
-        <Outlet />
+        <GenresProvider>
+          <Outlet />
+        </GenresProvider>
       </Container>
     </>
   );

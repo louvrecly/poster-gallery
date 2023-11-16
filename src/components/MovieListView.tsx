@@ -1,17 +1,17 @@
+import { useContext } from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import MovieGrid from './MovieGrid';
 import PageControl from './PageControl';
 import Movie from '../types/movie';
 import GenreList from './GenreList';
-import Genre from '../types/genre';
+import GenresContext from '../contexts/genres';
 
 interface MovieListViewProps {
   movies: Movie[];
   isLoading: boolean;
   currentPage: number;
   pageCount: number;
-  genres: Genre[];
   genreId?: number;
   navigateToPage: (page: number) => void;
 }
@@ -21,10 +21,11 @@ const MovieListView = ({
   isLoading,
   currentPage,
   pageCount,
-  genres,
   genreId = -1,
   navigateToPage,
 }: MovieListViewProps) => {
+  const { genres } = useContext(GenresContext);
+
   return (
     <>
       <GenreList genres={genres} genreId={genreId} />
