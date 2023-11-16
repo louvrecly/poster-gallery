@@ -1,24 +1,16 @@
-import { Link } from 'react-router-dom';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { useNavigate } from 'react-router';
+import ErrorDisplay from '../components/ErrorDisplay';
 
 const NotFound = () => {
-  return (
-    <Stack
-      spacing={2}
-      justifyContent="center"
-      alignItems="center"
-      sx={{ flexGrow: 1 }}
-    >
-      <Typography variant="h6" align="center">
-        Page Not Found.
-      </Typography>
+  const error = new Error('Page Not Found.');
+  const navigate = useNavigate();
 
-      <Button variant="outlined" color="warning" component={Link} to="/">
-        Home Page
-      </Button>
-    </Stack>
+  return (
+    <ErrorDisplay
+      error={error}
+      actionText="Back to Home Page"
+      onButtonClicked={() => navigate('/')}
+    ></ErrorDisplay>
   );
 };
 

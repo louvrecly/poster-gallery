@@ -1,14 +1,28 @@
-import { FallbackProps } from 'react-error-boundary';
+import { useMemo } from 'react';
+import { useErrorBoundary } from 'react-error-boundary';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { ErrorResponse } from '../types/tmdb';
 
-interface ErrorDisplayProps extends FallbackProps {
-  error: Error & ErrorResponse;
+interface ErrorDisplayProps {
+  error: Error | ErrorResponse;
+  actionText?: string;
+  onButtonClicked?: () => void;
 }
 
-const ErrorDisplay = ({ error, resetErrorBoundary }: ErrorDisplayProps) => {
+const ErrorDisplay = ({
+  error,
+  actionText = 'Reload',
+  onButtonClicked,
+}: ErrorDisplayProps) => {
+  const errorMessage = useMemo(
+    () => ('message' in error ? error.message : error.status_message),
+    [error],
+  );
+
+  const { resetBoundary } = useErrorBoundary();
+
   return (
     <Stack
       spacing={2}
@@ -17,11 +31,15 @@ const ErrorDisplay = ({ error, resetErrorBoundary }: ErrorDisplayProps) => {
       sx={{ flexGrow: 1 }}
     >
       <Typography variant="h6" align="center">
-        Error: {error.message ?? error.status_message ?? ''}
+        Error: {errorMessage}
       </Typography>
 
-      <Button variant="outlined" color="warning" onClick={resetErrorBoundary}>
-        Reload
+      <Button
+        variant="outlined"
+        color="warning"
+        onClick={onButtonClicked || resetBoundary}
+      >
+        {actionText}
       </Button>
     </Stack>
   );
