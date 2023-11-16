@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { useErrorBoundary } from 'react-error-boundary';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import StyledButton from './StyledButton';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { ErrorResponse } from '../types/tmdb';
@@ -34,13 +34,13 @@ const ErrorDisplay = ({
         Error: {errorMessage}
       </Typography>
 
-      <Button
+      <StyledButton
         variant="outlined"
         color="warning"
         onClick={onButtonClicked || resetBoundary}
       >
         {actionText}
-      </Button>
+      </StyledButton>
 
       <Snackbar
         open={!!message}

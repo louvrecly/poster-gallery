@@ -2,8 +2,8 @@ import { FormEvent } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import StyledTextField from './StyledTextField';
-import Button from '@mui/material/Button';
 import Icon from '@mui/material/Icon';
+import StyledButton from './StyledButton';
 
 type SearchBarSubmitEvent = FormEvent<HTMLFormElement> & {
   target: HTMLFormElement & { 0: HTMLInputElement };
@@ -32,7 +32,7 @@ const SearchBar = () => {
           defaultValue={keyword}
         />
 
-        <Button
+        <StyledButton
           variant="outlined"
           color="warning"
           type="submit"
@@ -42,7 +42,7 @@ const SearchBar = () => {
           }}
         >
           <Icon>search</Icon>
-        </Button>
+        </StyledButton>
       </Stack>
     </form>
   );

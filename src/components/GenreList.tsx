@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import StyledButton from './StyledButton';
 import Genre from '../types/genre';
 
 interface GenreListProps {
@@ -23,7 +23,7 @@ const GenreList = ({
       useFlexGap
     >
       {genres.map((genre) => (
-        <Button
+        <StyledButton
           key={genre.id}
           variant="outlined"
           color="success"
@@ -31,17 +31,10 @@ const GenreList = ({
           component={Link}
           to={`/genre/${genre.id}`}
           disabled={genre.id === genreId}
-          sx={{
-            py: 0,
-            typography: 'body2',
-            '&.Mui-disabled': {
-              borderColor: 'background.paper',
-              color: 'background.paper',
-            },
-          }}
+          sx={{ py: 0, typography: 'body2' }}
         >
           {genre.name}
-        </Button>
+        </StyledButton>
       ))}
     </Stack>
   );
