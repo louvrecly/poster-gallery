@@ -1,4 +1,4 @@
-import { GenresResponse, MovieListResponse } from '../types/tmdb';
+import { GenresResponse, SearchMoviesResponse } from '../types/tmdb';
 
 const TMDB_API_URL = import.meta.env.VITE_TMDB_API_URL;
 const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
@@ -6,7 +6,7 @@ const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 async function searchMoviesByGenreId(
   genreId: number = -1,
   page: number = 1,
-): Promise<MovieListResponse> {
+): Promise<SearchMoviesResponse> {
   const res = await fetch(
     `${TMDB_API_URL}/3/discover/movie?api_key=${TMDB_API_KEY}&page=${page}${
       genreId > 0 ? `&with_genres=${genreId}` : ''
@@ -18,7 +18,7 @@ async function searchMoviesByGenreId(
 async function searchMoviesByKeyword(
   keyword: string = '',
   page: number = 1,
-): Promise<MovieListResponse> {
+): Promise<SearchMoviesResponse> {
   const res = await fetch(
     `${TMDB_API_URL}/3/search/movie?api_key=${TMDB_API_KEY}&query=${keyword}&include_adult=false&language=en-US&page=${page}`,
   );

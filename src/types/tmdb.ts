@@ -7,7 +7,7 @@ export type ErrorResponse = {
   success: boolean;
 };
 
-export type MovieListResponse = {
+export type SearchMoviesResponse = {
   page: number;
   total_pages: number;
   total_results: number;
