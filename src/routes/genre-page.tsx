@@ -20,6 +20,7 @@ const GenrePage = () => {
   const { movies, pageCount, isLoading, isLoadingGenres } = useSearchMovies(
     '',
     genreId,
+    currentPage,
   );
 
   const genre = useMemo(() => genreMap[genreId], [genreId, genreMap]);
