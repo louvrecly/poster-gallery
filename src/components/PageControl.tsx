@@ -22,7 +22,7 @@ const PageControl = ({
       spacing={1}
     >
       <IconButton
-        color="primary"
+        color="warning"
         onClick={() => navigateToPage(currentPage - 1)}
         disabled={currentPage <= 1}
       >
@@ -34,7 +34,7 @@ const PageControl = ({
       </Typography>
 
       <IconButton
-        color="primary"
+        color="warning"
         onClick={() => navigateToPage(currentPage + 1)}
         disabled={currentPage >= pageCount}
       >

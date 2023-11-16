@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 
 const NavBar = () => {
   return (
-    <AppBar position="sticky">
+    <AppBar position="sticky" sx={{ backgroundColor: 'grey.900' }}>
       <Container maxWidth="lg" sx={{ py: 1 }}>
         <Toolbar disableGutters>
           <Stack

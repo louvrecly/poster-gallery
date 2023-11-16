@@ -34,7 +34,10 @@ const MovieCard = ({
   const { genreId } = useContext(GenresContext);
 
   return (
-    <Card raised>
+    <Card
+      raised
+      sx={{ backgroundColor: 'grey.900', color: 'background.paper' }}
+    >
       <CardMedia
         image={`${TMDB_IMAGE_URL}/t/p/w500${posterPath}`}
         sx={{ pt: '150%' }}
@@ -44,18 +47,19 @@ const MovieCard = ({
         <Stack spacing={1}>
           <Typography variant="h6">{title}</Typography>
 
-          <Typography variant="subtitle2">
+          <Typography variant="body2">
             {releaseDate.toLocaleDateString()}
           </Typography>
 
           <GenreList genres={genres} genreId={genreId} />
 
-          <Typography variant="subtitle2">
+          <Typography variant="body2">
             Original Language: {originalLanguage.toUpperCase()}
           </Typography>
 
           <Typography
-            variant="subtitle2"
+            variant="caption"
+            fontWeight="light"
             sx={{
               textOverflow: 'ellipsis',
               display: '-webkit-box',
@@ -67,7 +71,7 @@ const MovieCard = ({
             Overview: {overview}
           </Typography>
 
-          <Typography variant="subtitle2">
+          <Typography variant="body2">
             Rating: {voteAverage} / 10 ({voteCount} votes)
           </Typography>
         </Stack>

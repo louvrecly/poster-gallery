@@ -14,12 +14,20 @@ const GenreList = ({ genres, genreId = -1 }: GenreListProps) => {
       {genres.map((genre) => (
         <Button
           key={genre.id}
-          variant={genre.id === genreId ? 'contained' : 'outlined'}
+          variant="outlined"
+          color="success"
           size="small"
           component={Link}
           to={`/genre/${genre.id}`}
           disabled={genre.id === genreId}
-          sx={{ py: 0, typography: 'body2' }}
+          sx={{
+            py: 0,
+            typography: 'body2',
+            '&.Mui-disabled': {
+              borderColor: 'background.paper',
+              color: 'background.paper',
+            },
+          }}
         >
           {genre.name}
         </Button>

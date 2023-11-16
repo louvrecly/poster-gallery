@@ -28,9 +28,12 @@ const SearchBar = () => {
           id="keyword"
           label="Search"
           variant="outlined"
-          color="success"
+          color="warning"
           defaultValue={keyword}
           sx={{
+            '& input': {
+              color: 'common.white',
+            },
             '& fieldset': {
               borderTopRightRadius: 0,
               borderBottomRightRadius: 0,
@@ -39,8 +42,9 @@ const SearchBar = () => {
         />
 
         <Button
-          variant="contained"
-          color="success"
+          // variant="contained"
+          variant="outlined"
+          color="warning"
           type="submit"
           sx={{
             borderTopLeftRadius: 0,
