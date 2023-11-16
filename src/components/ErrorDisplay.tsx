@@ -1,9 +1,12 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useErrorBoundary } from 'react-error-boundary';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 import { ErrorResponse } from '../types/tmdb';
+import getErrorMessage from '../helpers/getErrorMessage';
 
 interface ErrorDisplayProps {
   error: Error | ErrorResponse;
@@ -16,11 +19,8 @@ const ErrorDisplay = ({
   actionText = 'Reload',
   onButtonClicked,
 }: ErrorDisplayProps) => {
-  const errorMessage = useMemo(
-    () => ('message' in error ? error.message : error.status_message),
-    [error],
-  );
-
+  const errorMessage = useMemo(() => getErrorMessage(error), [error]);
+  const [message, setMessage] = useState(errorMessage);
   const { resetBoundary } = useErrorBoundary();
 
   return (
@@ -41,6 +41,14 @@ const ErrorDisplay = ({
       >
         {actionText}
       </Button>
+
+      <Snackbar
+        open={!!message}
+        autoHideDuration={10000}
+        onClose={() => setMessage('')}
+      >
+        <Alert severity="error">{message}</Alert>
+      </Snackbar>
     </Stack>
   );
 };
