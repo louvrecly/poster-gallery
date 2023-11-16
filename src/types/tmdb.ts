@@ -15,5 +15,5 @@ export type SearchMoviesResponse = {
 };
 
 export type GetGenresResponse = {
-  genres: Genre[];
+  genres: (Genre | null)[];
 };

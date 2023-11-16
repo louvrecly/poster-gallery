@@ -1,6 +1,13 @@
 import Genre, { GenreMap } from '../types/genre';
 import Movie, { MovieData } from '../types/movie';
 
+export function isNotEmpty<Value>(
+  value: Value | null | undefined,
+): value is Value {
+  if (value === null || value === undefined) return false;
+  return true;
+}
+
 export function createGenreMap(genres: Genre[]): GenreMap {
   return genres.reduce(
     (subMap, genre) => ({ ...subMap, [genre.id]: genre }),
@@ -21,7 +28,7 @@ export function parseMovieData(genreMap: GenreMap) {
       originalTitle: rest.original_title,
       voteAverage: rest.vote_average,
       voteCount: rest.vote_count,
-      genres: genre_ids.map((id) => genreMap[id]),
+      genres: genre_ids.map((id) => genreMap[id]).filter(isNotEmpty),
     };
   };
 }
