@@ -1,12 +1,14 @@
 import { useMemo } from 'react';
 import useGenres from './useGenres';
 import useMovieData from './useMovieData';
-import usePageQuery from './usePageQuery';
 import { parseMovieData } from '../helpers/movies';
 
-const useSearchMovies = (keyword: string = '', genreId: number = -1) => {
+const useSearchMovies = (
+  keyword: string = '',
+  genreId: number = -1,
+  currentPage: number = 1,
+) => {
   const { genreMap, isLoadingGenres } = useGenres();
-  const { currentPage, setCurrentPage } = usePageQuery();
 
   const { movieData, pageCount, isLoadingMovieData } = useMovieData(
     keyword,
@@ -27,12 +29,10 @@ const useSearchMovies = (keyword: string = '', genreId: number = -1) => {
   return {
     movies,
     pageCount,
-    currentPage,
     genreMap,
     isLoading,
     isLoadingGenres,
     isLoadingMovieData,
-    setCurrentPage,
   };
 };
 
