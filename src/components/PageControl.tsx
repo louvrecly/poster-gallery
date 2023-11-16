@@ -24,7 +24,7 @@ const PageControl = ({
       <IconButton
         color="primary"
         onClick={() => navigateToPage(currentPage - 1)}
-        disabled={currentPage >= 1}
+        disabled={currentPage <= 1}
       >
         <Icon>arrow_left</Icon>
       </IconButton>
