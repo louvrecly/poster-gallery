@@ -1,7 +1,7 @@
 import { FormEvent } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
+import StyledTextField from './StyledTextField';
 import Button from '@mui/material/Button';
 import Icon from '@mui/material/Icon';
 
@@ -24,25 +24,15 @@ const SearchBar = () => {
   return (
     <form onSubmit={handleSubmit}>
       <Stack direction="row">
-        <TextField
+        <StyledTextField
           id="keyword"
           label="Search"
           variant="outlined"
           color="warning"
           defaultValue={keyword}
-          sx={{
-            '& input': {
-              color: 'background.paper',
-            },
-            '& fieldset': {
-              borderTopRightRadius: 0,
-              borderBottomRightRadius: 0,
-            },
-          }}
         />
 
         <Button
-          // variant="contained"
           variant="outlined"
           color="warning"
           type="submit"
