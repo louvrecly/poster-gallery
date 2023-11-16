@@ -30,9 +30,23 @@ const SearchBar = () => {
           variant="outlined"
           color="success"
           defaultValue={keyword}
+          sx={{
+            '& fieldset': {
+              borderTopRightRadius: 0,
+              borderBottomRightRadius: 0,
+            },
+          }}
         />
 
-        <Button variant="contained" color="success" type="submit">
+        <Button
+          variant="contained"
+          color="success"
+          type="submit"
+          sx={{
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+          }}
+        >
           <Icon>search</Icon>
         </Button>
       </Stack>
