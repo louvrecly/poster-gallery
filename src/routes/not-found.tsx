@@ -15,7 +15,7 @@ const NotFound = () => {
         Page Not Found.
       </Typography>
 
-      <Button variant="contained" component={Link} to="/">
+      <Button variant="contained" color="warning" component={Link} to="/">
         Home Page
       </Button>
     </Stack>

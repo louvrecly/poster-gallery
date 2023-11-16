@@ -32,7 +32,7 @@ const SearchBar = () => {
           defaultValue={keyword}
           sx={{
             '& input': {
-              color: 'common.white',
+              color: 'background.paper',
             },
             '& fieldset': {
               borderTopRightRadius: 0,

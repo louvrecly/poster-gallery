@@ -9,7 +9,7 @@ function App() {
   return (
     <Stack
       flexGrow={1}
-      sx={{ backgroundColor: 'grey.900', color: 'common.white' }}
+      sx={{ backgroundColor: 'grey.900', color: 'background.paper' }}
     >
       <CssBaseline />
 
