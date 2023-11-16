@@ -5,11 +5,11 @@ import usePageQuery from '../hooks/usePageQuery';
 
 const Home = () => {
   const [searchParams] = useSearchParams();
-  const keyword = searchParams.get('keyword');
+  const keyword = searchParams.get('keyword') ?? '';
   const { currentPage, setCurrentPage } = usePageQuery();
 
   const { movies, pageCount, isLoading, genres } = useSearchMovies(
-    keyword ?? '',
+    keyword,
     -1,
     currentPage,
   );
