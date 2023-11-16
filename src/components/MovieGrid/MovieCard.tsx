@@ -35,7 +35,7 @@ const MovieCard = ({
     <Card raised>
       <CardMedia
         image={`${TMDB_IMAGE_URL}/t/p/w500${posterPath}`}
-        sx={{ pt: '56.25%' }}
+        sx={{ pt: '150%' }}
       />
 
       <CardContent>
@@ -52,7 +52,18 @@ const MovieCard = ({
             Original Language: {originalLanguage.toUpperCase()}
           </Typography>
 
-          <Typography variant="subtitle2">Overview: {overview}</Typography>
+          <Typography
+            variant="subtitle2"
+            sx={{
+              textOverflow: 'ellipsis',
+              display: '-webkit-box',
+              WebkitLineClamp: 5,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+            }}
+          >
+            Overview: {overview}
+          </Typography>
 
           <Typography variant="subtitle2">
             Rating: {voteAverage} / 10 ({voteCount} votes)
