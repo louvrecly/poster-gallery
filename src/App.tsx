@@ -1,11 +1,10 @@
-import { Outlet } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import CssBaseline from '@mui/material/CssBaseline';
-import Container from '@mui/material/Container';
-import NavBar from './components/NavBar';
-import GenresProvider from './components/GenresProvider';
 import Stack from '@mui/material/Stack';
+import NavBar from './components/NavBar';
 import ErrorDisplay from './components/ErrorDisplay';
+import GenresProvider from './components/GenresProvider';
+import PageContent from './components/PageContent';
 
 function App() {
   return (
@@ -17,21 +16,11 @@ function App() {
 
       <NavBar />
 
-      <Container
-        maxWidth="lg"
-        sx={{
-          py: 2,
-          flexGrow: 1,
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        <ErrorBoundary FallbackComponent={ErrorDisplay}>
-          <GenresProvider>
-            <Outlet />
-          </GenresProvider>
-        </ErrorBoundary>
-      </Container>
+      <ErrorBoundary FallbackComponent={ErrorDisplay}>
+        <GenresProvider>
+          <PageContent />
+        </GenresProvider>
+      </ErrorBoundary>
     </Stack>
   );
 }

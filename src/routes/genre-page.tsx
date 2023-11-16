@@ -34,7 +34,7 @@ const GenrePage = () => {
   return (
     <>
       <Typography variant="h6" sx={{ pb: 1 }}>
-        {isLoadingGenres ? 'Loading...' : `Genre - ${genre.name}`}
+        Genre - {isLoadingGenres ? 'Loading...' : genre.name}
       </Typography>
 
       <MovieListView
