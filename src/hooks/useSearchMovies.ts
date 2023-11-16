@@ -3,16 +3,18 @@ import useGenres from './useGenres';
 import useMovieData from './useMovieData';
 import { parseMovieData } from '../helpers/movies';
 
-const useSearchMovies = (keyword: string = '', genreId: number = -1) => {
+const useSearchMovies = (
+  keyword: string = '',
+  genreId: number = -1,
+  currentPage: number = 1,
+) => {
   const { genreMap, isLoadingGenres } = useGenres();
 
-  const {
-    movieData,
-    pageCount,
+  const { movieData, pageCount, isLoadingMovieData } = useMovieData(
+    keyword,
+    genreId,
     currentPage,
-    isLoadingMovieData,
-    setCurrentPage,
-  } = useMovieData(keyword, genreId);
+  );
 
   const isLoading = useMemo(
     () => isLoadingGenres || isLoadingMovieData,
@@ -27,12 +29,10 @@ const useSearchMovies = (keyword: string = '', genreId: number = -1) => {
   return {
     movies,
     pageCount,
-    currentPage,
     genreMap,
     isLoading,
     isLoadingGenres,
     isLoadingMovieData,
-    setCurrentPage,
   };
 };
 

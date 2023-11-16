@@ -4,6 +4,7 @@ import Typography from '@mui/material/Typography';
 import useSearchMovies from '../hooks/useSearchMovies';
 import MovieListView from '../components/MovieListView';
 import NotFound from './not-found';
+import usePageQuery from '../hooks/usePageQuery';
 
 type GenrePageParams = {
   genreId: string;
@@ -12,16 +13,10 @@ type GenrePageParams = {
 const GenrePage = () => {
   const params = useParams<GenrePageParams>();
   const genreId = parseInt(params.genreId ?? '');
+  const { currentPage, setCurrentPage } = usePageQuery();
 
-  const {
-    movies,
-    currentPage,
-    pageCount,
-    genreMap,
-    isLoading,
-    isLoadingGenres,
-    setCurrentPage,
-  } = useSearchMovies('', genreId);
+  const { movies, pageCount, genreMap, isLoading, isLoadingGenres } =
+    useSearchMovies('', genreId);
 
   const genre = useMemo(() => genreMap[genreId], [genreId, genreMap]);
 
@@ -38,7 +33,7 @@ const GenrePage = () => {
         isLoading={isLoading}
         currentPage={currentPage}
         pageCount={pageCount}
-        setCurrentPage={setCurrentPage}
+        navigateToPage={setCurrentPage}
       />
     </>
   );

@@ -9,7 +9,7 @@ interface MovieListViewProps {
   isLoading: boolean;
   currentPage: number;
   pageCount: number;
-  setCurrentPage: (page: number) => void;
+  navigateToPage: (page: number) => void;
 }
 
 const MovieListView = ({
@@ -17,7 +17,7 @@ const MovieListView = ({
   isLoading,
   currentPage,
   pageCount,
-  setCurrentPage,
+  navigateToPage,
 }: MovieListViewProps) => {
   return (
     <>
@@ -43,7 +43,7 @@ const MovieListView = ({
       <PageControl
         currentPage={currentPage}
         pageCount={pageCount}
-        navigateToPage={setCurrentPage}
+        navigateToPage={navigateToPage}
       />
     </>
   );
