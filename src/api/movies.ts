@@ -36,7 +36,7 @@ export async function discoverMovies(
   }
 }
 
-export async function searchMovieByKeyword(
+export async function searchMoviesByKeyword(
   keyword: string = '',
   page: number = 1,
 ): Promise<MovieListResponse> {

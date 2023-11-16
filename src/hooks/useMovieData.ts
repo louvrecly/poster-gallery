@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { MovieData } from '../types/movie';
-import { discoverMovies } from '../api/movies';
+import { discoverMovies, searchMoviesByKeyword } from '../api/movies';
 
 const useMovieData = (
   keyword: string = '',
@@ -9,15 +9,25 @@ const useMovieData = (
 ) => {
   const [isLoading, setIsLoading] = useState(true);
   const [pageCount, setPageCount] = useState(1);
-  const [movieData, setMovieItems] = useState<MovieData[]>([]);
+  const [movieData, setMovieData] = useState<MovieData[]>([]);
 
   useEffect(() => {
+    if (!keyword && genreId === -1) return;
+
     setIsLoading(true);
-    discoverMovies(keyword, genreId, currentPage).then((res) => {
-      setPageCount(res.total_pages);
-      setMovieItems(res.results);
-      setIsLoading(false);
-    });
+    if (!keyword) {
+      discoverMovies(keyword, genreId, currentPage).then((res) => {
+        setPageCount(res.total_pages);
+        setMovieData(res.results);
+        setIsLoading(false);
+      });
+    } else {
+      searchMoviesByKeyword(keyword, currentPage).then((res) => {
+        setPageCount(res.total_pages);
+        setMovieData(res.results);
+        setIsLoading(false);
+      });
+    }
   }, [currentPage, genreId, keyword]);
 
   return {
