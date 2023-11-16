@@ -1,15 +1,7 @@
-import Genre from '../types/genre';
-import { MovieData } from '../types/movie';
+import { GenresResponse, MovieListResponse } from '../types/tmdb';
 
 const TMDB_API_URL = import.meta.env.VITE_TMDB_API_URL;
 const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-
-type MovieListResponse = {
-  page: number;
-  total_pages: number;
-  total_results: number;
-  results: MovieData[];
-};
 
 const emptyMovieListResponse: MovieListResponse = {
   page: 1,
@@ -50,10 +42,6 @@ export async function searchMoviesByKeyword(
     return emptyMovieListResponse;
   }
 }
-
-type GenresResponse = {
-  genres: Genre[];
-};
 
 const emptyGenresResponse: GenresResponse = { genres: [] };
 
