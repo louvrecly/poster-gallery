@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useErrorBoundary } from 'react-error-boundary';
-import { getMovieGenres } from '../api/movies';
+import { getGenres } from '../api/movies';
 import Genre from '../types/genre';
 import { createGenreMap } from '../helpers/movies';
 
@@ -12,7 +12,7 @@ const useGenres = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getMovieGenres()
+    getGenres()
       .then((res) => setGenres(res.genres))
       .catch(showBoundary)
       .finally(() => setIsLoading(false));

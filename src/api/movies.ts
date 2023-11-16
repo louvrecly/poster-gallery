@@ -35,7 +35,7 @@ export async function searchMovies(
   return searchMoviesByKeyword(keyword, page);
 }
 
-export async function getMovieGenres(): Promise<GetGenresResponse> {
+export async function getGenres(): Promise<GetGenresResponse> {
   const res = await fetch(
     `${TMDB_API_URL}/3/genre/movie/list?api_key=${TMDB_API_KEY}`,
   );
