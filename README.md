@@ -1,6 +1,6 @@
 # 🎬 Poster Gallery
 
-This is a minimal movie web application built with React, TypeScript and Vite, using data fetched from the TMDB API. A deployed version can be viewed here.
+This is a minimal movie web application built with React, TypeScript and Vite, using data fetched from the TMDB API. A deployed version can be viewed [here](https://poster-gallery.vercel.app/).
 
 ## 💡 Features
 
