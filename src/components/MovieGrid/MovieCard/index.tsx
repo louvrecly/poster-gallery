@@ -4,9 +4,10 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Genre from '../../types/genre';
-import GenreList from '../GenreList';
-import GenresContext from '../../contexts/genres';
+import InfoBlock from './InfoBlock';
+import Genre from '../../../types/genre';
+import GenreList from '../../GenreList';
+import GenresContext from '../../../contexts/genres';
 
 const TMDB_IMAGE_URL = import.meta.env.VITE_TMDB_IMAGE_URL;
 
@@ -47,15 +48,12 @@ const MovieCard = ({
         <Stack spacing={1}>
           <Typography variant="h6">{title}</Typography>
 
-          <Typography variant="body2">
-            {releaseDate.toLocaleDateString()}
-          </Typography>
-
-          <GenreList genres={genres} genreId={genreId} />
-
-          <Typography variant="body2">
-            Original Language: {originalLanguage.toUpperCase()}
-          </Typography>
+          <InfoBlock
+            voteAverage={voteAverage}
+            voteCount={voteCount}
+            releaseDate={releaseDate}
+            originalLanguage={originalLanguage}
+          />
 
           <Typography
             variant="caption"
@@ -68,12 +66,10 @@ const MovieCard = ({
               overflow: 'hidden',
             }}
           >
-            Overview: {overview}
+            {overview}
           </Typography>
 
-          <Typography variant="body2">
-            Rating: {voteAverage} / 10 ({voteCount} votes)
-          </Typography>
+          <GenreList genres={genres} genreId={genreId} />
         </Stack>
       </CardContent>
     </Card>
