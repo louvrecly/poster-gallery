@@ -43,7 +43,10 @@ const RatingCircle = ({ value, maxValue, count }: RatingCircleProps) => {
             lineHeight={1}
             sx={{ color: `${color}.main` }}
           >
-            {value}
+            {value.toLocaleString(undefined, {
+              minimumFractionDigits: 0,
+              maximumFractionDigits: 1,
+            })}
           </Typography>
           <Typography variant="caption" lineHeight={1}>
             /{maxValue}
