@@ -39,7 +39,7 @@ const MovieListView = ({
         }}
       >
         {isLoading ? (
-          <Typography variant="subtitle1" align="center">
+          <Typography variant="h6" align="center">
             Loading...
           </Typography>
         ) : (
