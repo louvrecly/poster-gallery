@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
-import StyledButton from './StyledButton';
 import Genre from '../types/genre';
+import Chip from '@mui/material/Chip';
 
 interface GenreListProps {
   genres: Genre[];
@@ -14,6 +14,8 @@ const GenreList = ({
   genreId = -1,
   justifyContent = 'auto',
 }: GenreListProps) => {
+  const navigate = useNavigate();
+
   return (
     <Stack
       direction="row"
@@ -23,18 +25,15 @@ const GenreList = ({
       useFlexGap
     >
       {genres.map((genre) => (
-        <StyledButton
+        <Chip
           key={genre.id}
+          label={genre.name}
           variant="outlined"
           color="success"
           size="small"
-          component={Link}
-          to={`/genre/${genre.id}`}
           disabled={genre.id === genreId}
-          sx={{ py: 0, typography: 'body2' }}
-        >
-          {genre.name}
-        </StyledButton>
+          onClick={() => navigate(`/genre/${genre.id}`)}
+        />
       ))}
     </Stack>
   );
