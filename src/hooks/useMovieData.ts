@@ -14,8 +14,6 @@ const useMovieData = (
   const { showBoundary } = useErrorBoundary();
 
   useEffect(() => {
-    if (!keyword && genreId === -1) return;
-
     setIsLoading(true);
 
     searchMovies(keyword, genreId, currentPage)
