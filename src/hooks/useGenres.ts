@@ -3,6 +3,7 @@ import { useErrorBoundary } from 'react-error-boundary';
 import { getGenres } from '../api/movies';
 import Genre from '../types/genre';
 import { createGenreMap, isNotEmpty } from '../helpers/movies';
+import DUMMY_GENRES from '../helpers/dummyGenres';
 
 const useGenres = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -15,7 +16,12 @@ const useGenres = () => {
     getGenres()
       .then((res) => {
         const genres = res.genres.filter(isNotEmpty);
-        setGenres(genres);
+
+        if (!genres.length) {
+          setGenres(DUMMY_GENRES);
+        } else {
+          setGenres(genres);
+        }
       })
       .catch(showBoundary)
       .finally(() => setIsLoading(false));
