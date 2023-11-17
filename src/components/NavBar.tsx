@@ -1,9 +1,11 @@
+import { Link as RouterLink } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
+import Stack from '@mui/material/Stack';
+import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import SearchBar from './SearchBar';
-import Stack from '@mui/material/Stack';
 
 const NavBar = () => {
   return (
@@ -18,7 +20,13 @@ const NavBar = () => {
             flexWrap="wrap"
             spacing={2}
           >
-            <Typography variant="h6">🎬 Poster Gallery</Typography>
+            <Link
+              component={RouterLink}
+              to="/"
+              sx={{ color: 'background.paper', textDecoration: 'none' }}
+            >
+              <Typography variant="h6">🎬 Poster Gallery</Typography>
+            </Link>
 
             <SearchBar />
           </Stack>
