@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import Stack from '@mui/material/Stack';
@@ -10,7 +11,12 @@ interface RatingCircleProps {
 }
 
 const RatingCircle = ({ value, maxValue, count }: RatingCircleProps) => {
-  const rating = 100 * (value / maxValue);
+  const rating = useMemo(() => 100 * (value / maxValue), [maxValue, value]);
+  const color = useMemo(() => {
+    if (rating >= 70) return 'success';
+    if (rating >= 50) return 'warning';
+    return 'error';
+  }, [rating]);
 
   return (
     <Box
@@ -25,14 +31,18 @@ const RatingCircle = ({ value, maxValue, count }: RatingCircleProps) => {
       <CircularProgress
         variant={count > 0 ? 'determinate' : 'indeterminate'}
         value={rating}
-        color="success"
+        color={color}
         size={80}
         thickness={1.5}
       />
 
-      <Stack alignItems="center" maxWidth={70} sx={{ position: 'absolute' }}>
+      <Stack alignItems="center" maxWidth={60} sx={{ position: 'absolute' }}>
         <Stack direction="row" alignItems="baseline">
-          <Typography variant="h6" lineHeight={1}>
+          <Typography
+            variant="h6"
+            lineHeight={1}
+            sx={{ color: `${color}.main` }}
+          >
             {value}
           </Typography>
           <Typography variant="caption" lineHeight={1}>
@@ -44,7 +54,12 @@ const RatingCircle = ({ value, maxValue, count }: RatingCircleProps) => {
           variant="caption"
           lineHeight={1}
           component="sub"
-          sx={{ overflow: 'hidden', whiteSpace: 'nowrap' }}
+          width="100%"
+          sx={{
+            overflow: 'hidden',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+          }}
         >
           {count} votes
         </Typography>
