@@ -6,7 +6,8 @@ This is a movie web application built with React, TypeScript, and Material UI, u
 
 - Shows a list of movies with detailed information (e.g. title, released year, average rating, overview, etc.)
 - Search for a movie by title using keyword
-- Navigate to a specific genre page to filter the movie list
+- Paginated search results
+- Filter movies with a list of genre toggles
 - Responsive UI to the device's viewport
 
 ## ⚙️ Tech Stack
