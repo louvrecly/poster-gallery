@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import ErrorDisplay from './components/ErrorDisplay';
 import GenresProvider from './components/GenresProvider';
 import PageContent from './components/PageContent';
+import KeywordProvider from './components/KeywordProvider';
 
 function App() {
   return (
@@ -14,13 +15,15 @@ function App() {
     >
       <CssBaseline />
 
-      <NavBar />
+      <KeywordProvider>
+        <NavBar />
 
-      <ErrorBoundary FallbackComponent={ErrorDisplay}>
-        <GenresProvider>
-          <PageContent />
-        </GenresProvider>
-      </ErrorBoundary>
+        <ErrorBoundary FallbackComponent={ErrorDisplay}>
+          <GenresProvider>
+            <PageContent />
+          </GenresProvider>
+        </ErrorBoundary>
+      </KeywordProvider>
     </Stack>
   );
 }

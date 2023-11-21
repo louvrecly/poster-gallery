@@ -2,11 +2,11 @@ import { useMemo, useContext } from 'react';
 import useMovieData from './useMovieData';
 import { parseMovieData } from '../helpers/movies';
 import GenresContext from '../contexts/genres';
-import useKeywordQuery from './useKeywordQuery';
 import usePageQuery from './usePageQuery';
+import KeywordContext from '../contexts/keyword';
 
 const useSearchMovies = () => {
-  const { keyword } = useKeywordQuery();
+  const { keyword } = useContext(KeywordContext);
   const { genreMap, selectedGenreIds, isLoadingGenres } =
     useContext(GenresContext);
   const { currentPage, setCurrentPage } = usePageQuery();

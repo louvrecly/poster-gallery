@@ -1,9 +1,12 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 const useKeywordQuery = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const keyword = searchParams.get('keyword') ?? '';
+  const keyword = useMemo(
+    () => searchParams.get('keyword') ?? '',
+    [searchParams],
+  );
 
   const setKeywordParam = useCallback(
     (keyword: string) =>
