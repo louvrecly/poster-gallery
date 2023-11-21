@@ -26,11 +26,11 @@ const MovieGrid = ({ movies }: MovieGridProps) => {
             title={movie.title}
             posterPath={movie.posterPath}
             releaseDate={movie.releaseDate}
-            genres={movie.genres}
             originalLanguage={movie.originalLanguage}
             overview={movie.overview}
             voteAverage={movie.voteAverage}
             voteCount={movie.voteCount}
+            genres={movie.genres}
           />
         </Grid>
       ))}

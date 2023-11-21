@@ -1,4 +1,4 @@
-import { useMemo, useContext, useEffect } from 'react';
+import { useMemo, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import useSearchMovies from '../hooks/useSearchMovies';
@@ -14,20 +14,15 @@ type GenrePageParams = {
 const GenrePage = () => {
   const params = useParams<GenrePageParams>();
   const genreId = parseInt(params.genreId ?? '-1');
-  const { genreMap, setGenreId } = useContext(GenresContext);
+  const { genreMap } = useContext(GenresContext);
   const { currentPage, setCurrentPage } = usePageQuery();
 
   const { movies, pageCount, isLoading, isLoadingGenres } = useSearchMovies(
     '',
-    genreId,
     currentPage,
   );
 
   const genre = useMemo(() => genreMap[genreId], [genreId, genreMap]);
-
-  useEffect(() => {
-    setGenreId(genreId);
-  }, [genreId, setGenreId]);
 
   if (!isLoadingGenres && !genre) return <NotFound />;
 

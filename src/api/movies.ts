@@ -4,12 +4,12 @@ const TMDB_API_URL = import.meta.env.VITE_TMDB_API_URL;
 const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
 
 async function searchMoviesByGenreId(
-  genreId: number = -1,
+  genreIds: number[] = [],
   page: number = 1,
 ): Promise<SearchMoviesResponse> {
   const res = await fetch(
     `${TMDB_API_URL}/3/discover/movie?api_key=${TMDB_API_KEY}&page=${page}${
-      genreId > 0 ? `&with_genres=${genreId}` : ''
+      genreIds.length ? `&with_genres=${genreIds.join(',')}` : ''
     }&sort_by=popularity.desc`,
   );
   return res.json();
@@ -27,12 +27,12 @@ async function searchMoviesByKeyword(
 
 export async function searchMovies(
   keyword: string = '',
-  genreId: number = -1,
+  genreIds: number[] = [],
   page: number = 1,
 ) {
   if (keyword) return searchMoviesByKeyword(keyword, page);
 
-  return searchMoviesByGenreId(genreId, page);
+  return searchMoviesByGenreId(genreIds, page);
 }
 
 export async function getGenres(): Promise<GetGenresResponse> {

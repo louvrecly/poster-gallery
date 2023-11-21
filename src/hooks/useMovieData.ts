@@ -5,7 +5,7 @@ import { useErrorBoundary } from 'react-error-boundary';
 
 const useMovieData = (
   keyword: string = '',
-  genreId: number = -1,
+  genreIds: number[] = [],
   currentPage: number = 1,
 ) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,14 +16,14 @@ const useMovieData = (
   useEffect(() => {
     setIsLoading(true);
 
-    searchMovies(keyword, genreId, currentPage)
+    searchMovies(keyword, genreIds, currentPage)
       .then((res) => {
         setPageCount(res.total_pages);
         setMovieData(res.results);
       })
       .catch(showBoundary)
       .finally(() => setIsLoading(false));
-  }, [currentPage, genreId, keyword, showBoundary]);
+  }, [currentPage, genreIds, keyword, showBoundary]);
 
   return {
     movieData,

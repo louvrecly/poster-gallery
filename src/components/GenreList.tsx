@@ -1,39 +1,26 @@
-import { useNavigate } from 'react-router-dom';
-import Stack from '@mui/material/Stack';
-import Genre from '../types/genre';
+import { useContext } from 'react';
+import Stack, { StackProps } from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
+import Genre from '../types/genre';
+import GenresContext from '../contexts/genres';
 
-interface GenreListProps {
+interface GenreListProps extends StackProps {
   genres: Genre[];
-  genreId?: number;
-  justifyContent?: string;
 }
 
-const GenreList = ({
-  genres,
-  genreId = -1,
-  justifyContent = 'auto',
-}: GenreListProps) => {
-  const navigate = useNavigate();
+const GenreList = ({ genres, ...props }: GenreListProps) => {
+  const { selectedGenreIds, toggleGenreId } = useContext(GenresContext);
 
   return (
-    <Stack
-      direction="row"
-      justifyContent={justifyContent}
-      spacing={1}
-      flexWrap="wrap"
-      useFlexGap
-    >
+    <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap {...props}>
       {genres.map((genre) => (
         <Chip
           key={genre.id}
           label={genre.name}
-          variant={genre.id === genreId ? 'filled' : 'outlined'}
+          variant={selectedGenreIds.includes(genre.id) ? 'filled' : 'outlined'}
           color="success"
           size="small"
-          disabled={genre.id === genreId}
-          onClick={() => navigate(`/genre/${genre.id}`)}
-          sx={{ '&.Mui-disabled': { opacity: 1 } }}
+          onClick={() => toggleGenreId(genre.id)}
         />
       ))}
     </Stack>

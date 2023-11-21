@@ -1,20 +1,20 @@
-import { Dispatch, SetStateAction, createContext } from 'react';
+import { createContext } from 'react';
 import Genre, { GenreMap } from '../types/genre';
 
 export type GenresContextValues = {
   genres: Genre[];
   genreMap: GenreMap;
   isLoadingGenres: boolean;
-  genreId: number;
-  setGenreId: Dispatch<SetStateAction<number>>;
+  selectedGenreIds: number[];
+  toggleGenreId: (genreId: number) => void;
 };
 
 const initialValues: GenresContextValues = {
   genres: [],
   genreMap: {},
   isLoadingGenres: false,
-  genreId: -1,
-  setGenreId: () => null,
+  selectedGenreIds: [],
+  toggleGenreId: () => null,
 };
 
 const GenresContext = createContext(initialValues);

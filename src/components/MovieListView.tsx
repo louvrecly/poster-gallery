@@ -22,11 +22,11 @@ const MovieListView = ({
   pageCount,
   navigateToPage,
 }: MovieListViewProps) => {
-  const { genres, genreId } = useContext(GenresContext);
+  const { genres } = useContext(GenresContext);
 
   return (
     <>
-      <GenreList genres={genres} genreId={genreId} justifyContent="center" />
+      <GenreList genres={genres} justifyContent="center" />
 
       <Container
         disableGutters

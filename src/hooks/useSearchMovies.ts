@@ -3,16 +3,13 @@ import useMovieData from './useMovieData';
 import { parseMovieData } from '../helpers/movies';
 import GenresContext from '../contexts/genres';
 
-const useSearchMovies = (
-  keyword: string = '',
-  genreId: number = -1,
-  currentPage: number = 1,
-) => {
-  const { genreMap, isLoadingGenres } = useContext(GenresContext);
+const useSearchMovies = (keyword: string = '', currentPage: number = 1) => {
+  const { genreMap, selectedGenreIds, isLoadingGenres } =
+    useContext(GenresContext);
 
   const { movieData, pageCount, isLoadingMovieData } = useMovieData(
     keyword,
-    genreId,
+    selectedGenreIds,
     currentPage,
   );
 
