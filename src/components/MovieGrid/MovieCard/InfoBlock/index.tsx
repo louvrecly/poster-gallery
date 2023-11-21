@@ -1,6 +1,7 @@
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import RatingCircle from '../../RatingCircle';
+import InfoBlockContainer from './Container';
+import RatingCircle from '../../../RatingCircle';
 
 interface InfoBlockProps {
   voteAverage: number;
@@ -16,7 +17,7 @@ const InfoBlock = ({
   originalLanguage,
 }: InfoBlockProps) => {
   return (
-    <Stack direction="row" alignItems="center" spacing={2}>
+    <InfoBlockContainer>
       <RatingCircle value={voteAverage} maxValue={10} count={voteCount} />
 
       <Stack spacing={1}>
@@ -28,7 +29,7 @@ const InfoBlock = ({
           Language: {originalLanguage.toUpperCase()}
         </Typography>
       </Stack>
-    </Stack>
+    </InfoBlockContainer>
   );
 };
 
