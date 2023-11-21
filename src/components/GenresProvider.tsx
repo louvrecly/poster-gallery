@@ -1,54 +1,19 @@
-import { ReactNode, useCallback, useMemo } from 'react';
+import { ReactNode, useContext } from 'react';
 import GenresContext from '../contexts/genres';
 import useGenres from '../hooks/useGenres';
-import { useSearchParams } from 'react-router-dom';
-import parseGenreIdsParam from '../helpers/parseGenreIdsParam';
+import KeywordContext from '../contexts/keyword';
+import useGenresQuery from '../hooks/useGenresQuery';
 
 interface GenresProviderProps {
   children: ReactNode;
 }
 
 const GenresProvider = ({ children }: GenresProviderProps) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const genreIdsParam = searchParams.get('genres') ?? '';
-
+  const { keyword } = useContext(KeywordContext);
   const { genres, genreMap, isLoadingGenres } = useGenres();
-
-  const selectedGenreIds = useMemo(
-    () => parseGenreIdsParam(genreMap, genreIdsParam),
-    [genreIdsParam, genreMap],
-  );
-
-  const toggleGenreId = useCallback(
-    (genreId: number) => {
-      setSearchParams((searchParams) => {
-        if (selectedGenreIds.includes(genreId)) {
-          searchParams.set(
-            'genres',
-            selectedGenreIds.filter((id) => id !== genreId).join(','),
-          );
-        } else {
-          selectedGenreIds.push(genreId);
-          searchParams.set('genres', selectedGenreIds.join(','));
-        }
-
-        searchParams.delete('keyword');
-        searchParams.delete('page');
-        return searchParams;
-      });
-    },
-    [selectedGenreIds, setSearchParams],
-  );
-
-  const clearAllGenreIds = useCallback(
-    () =>
-      setSearchParams((searchParams) => {
-        searchParams.delete('genres');
-        searchParams.delete('keyword');
-        searchParams.delete('page');
-        return searchParams;
-      }),
-    [setSearchParams],
+  const { selectedGenreIds, toggleGenreId, clearAllGenreIds } = useGenresQuery(
+    genreMap,
+    keyword,
   );
 
   return (
