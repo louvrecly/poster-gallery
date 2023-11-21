@@ -1,11 +1,9 @@
-import { useContext } from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import GenreControl from './GenreControl';
 import MovieGrid from './MovieGrid';
 import PageControl from './PageControl';
 import Movie from '../types/movie';
-import GenreList from './GenreList';
-import GenresContext from '../contexts/genres';
 
 interface MovieListViewProps {
   movies: Movie[];
@@ -22,11 +20,9 @@ const MovieListView = ({
   pageCount,
   navigateToPage,
 }: MovieListViewProps) => {
-  const { genres } = useContext(GenresContext);
-
   return (
     <>
-      <GenreList genres={genres} justifyContent="center" />
+      <GenreControl />
 
       <Container
         disableGutters
