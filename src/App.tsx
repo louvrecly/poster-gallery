@@ -1,10 +1,11 @@
 import { ErrorBoundary } from 'react-error-boundary';
+import { Outlet } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
+import Container from '@mui/material/Container';
 import NavBar from './components/NavBar';
 import ErrorDisplay from './components/ErrorDisplay';
 import GenresProvider from './components/Providers/GenresProvider';
-import PageContent from './components/PageContent';
 import KeywordProvider from './components/Providers/KeywordProvider';
 
 function App() {
@@ -20,7 +21,17 @@ function App() {
 
         <ErrorBoundary FallbackComponent={ErrorDisplay}>
           <GenresProvider>
-            <PageContent />
+            <Container
+              maxWidth="lg"
+              sx={{
+                py: 2,
+                flexGrow: 1,
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <Outlet />
+            </Container>
           </GenresProvider>
         </ErrorBoundary>
       </KeywordProvider>
