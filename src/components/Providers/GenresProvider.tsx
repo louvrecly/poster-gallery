@@ -1,8 +1,8 @@
 import { ReactNode, useContext } from 'react';
-import GenresContext from '../contexts/genres';
-import useGenres from '../hooks/useGenres';
-import KeywordContext from '../contexts/keyword';
-import useGenresQuery from '../hooks/useGenresQuery';
+import GenresContext from '../../contexts/genres';
+import useGenres from '../../hooks/useGenres';
+import KeywordContext from '../../contexts/keyword';
+import useGenresQuery from '../../hooks/useGenresQuery';
 
 interface GenresProviderProps {
   children: ReactNode;

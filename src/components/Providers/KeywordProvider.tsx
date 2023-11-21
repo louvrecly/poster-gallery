@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import KeywordContext from '../contexts/keyword';
-import useKeywordQuery from '../hooks/useKeywordQuery';
+import KeywordContext from '../../contexts/keyword';
+import useKeywordQuery from '../../hooks/useKeywordQuery';
 
 interface KeywordProviderProps {
   children: ReactNode;

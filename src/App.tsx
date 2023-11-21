@@ -3,9 +3,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
 import NavBar from './components/NavBar';
 import ErrorDisplay from './components/ErrorDisplay';
-import GenresProvider from './components/GenresProvider';
+import GenresProvider from './components/Providers/GenresProvider';
 import PageContent from './components/PageContent';
-import KeywordProvider from './components/KeywordProvider';
+import KeywordProvider from './components/Providers/KeywordProvider';
 
 function App() {
   return (
