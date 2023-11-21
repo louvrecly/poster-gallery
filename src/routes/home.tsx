@@ -1,6 +1,6 @@
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 import GenreControl from '../components/GenreControl';
+import MovieGridLoading from '../components/MovieGrid/Loading';
 import MovieGrid from '../components/MovieGrid';
 import PageControl from '../components/PageControl';
 import useSearchMovies from '../hooks/useSearchMovies';
@@ -23,13 +23,7 @@ const Home = () => {
           justifyContent: 'center',
         }}
       >
-        {isLoading ? (
-          <Typography variant="h6" align="center">
-            Loading...
-          </Typography>
-        ) : (
-          <MovieGrid movies={movies} />
-        )}
+        {isLoading ? <MovieGridLoading /> : <MovieGrid movies={movies} />}
       </Container>
 
       <PageControl
