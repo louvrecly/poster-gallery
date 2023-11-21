@@ -28,11 +28,12 @@ const GenreList = ({
         <Chip
           key={genre.id}
           label={genre.name}
-          variant="outlined"
+          variant={genre.id === genreId ? 'filled' : 'outlined'}
           color="success"
           size="small"
           disabled={genre.id === genreId}
           onClick={() => navigate(`/genre/${genre.id}`)}
+          sx={{ '&.Mui-disabled': { opacity: 1 } }}
         />
       ))}
     </Stack>

@@ -25,7 +25,7 @@ const InfoBlock = ({
         </Typography>
 
         <Typography variant="body2">
-          Original Language: {originalLanguage.toUpperCase()}
+          Language: {originalLanguage.toUpperCase()}
         </Typography>
       </Stack>
     </Stack>
