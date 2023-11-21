@@ -7,6 +7,7 @@ export type GenresContextValues = {
   isLoadingGenres: boolean;
   selectedGenreIds: number[];
   toggleGenreId: (genreId: number) => void;
+  clearAllGenreIds: () => void;
 };
 
 const initialValues: GenresContextValues = {
@@ -15,6 +16,7 @@ const initialValues: GenresContextValues = {
   isLoadingGenres: false,
   selectedGenreIds: [],
   toggleGenreId: () => null,
+  clearAllGenreIds: () => null,
 };
 
 const GenresContext = createContext(initialValues);

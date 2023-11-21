@@ -37,6 +37,15 @@ const GenresProvider = ({ children }: GenresProviderProps) => {
     [selectedGenreIds, setSearchParams],
   );
 
+  const clearAllGenreIds = useCallback(
+    () =>
+      setSearchParams((searchParams) => {
+        searchParams.delete('genres');
+        return searchParams;
+      }),
+    [setSearchParams],
+  );
+
   return (
     <GenresContext.Provider
       value={{
@@ -45,6 +54,7 @@ const GenresProvider = ({ children }: GenresProviderProps) => {
         selectedGenreIds,
         isLoadingGenres,
         toggleGenreId,
+        clearAllGenreIds,
       }}
     >
       {children}
