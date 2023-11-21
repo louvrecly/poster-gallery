@@ -17,10 +17,8 @@ const GenrePage = () => {
   const { genreMap } = useContext(GenresContext);
   const { currentPage, setCurrentPage } = usePageQuery();
 
-  const { movies, pageCount, isLoading, isLoadingGenres } = useSearchMovies(
-    '',
-    currentPage,
-  );
+  const { movies, pageCount, isLoading, isLoadingGenres } =
+    useSearchMovies(currentPage);
 
   const genre = useMemo(() => genreMap[genreId], [genreId, genreMap]);
 

@@ -1,24 +1,21 @@
 import { FormEvent } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import StyledTextField from './StyledTextField';
 import Icon from '@mui/material/Icon';
 import StyledButton from './StyledButton';
+import useKeywordQuery from '../hooks/useKeywordQuery';
 
 type SearchBarSubmitEvent = FormEvent<HTMLFormElement> & {
   target: HTMLFormElement & { 0: HTMLInputElement };
 };
 
 const SearchBar = () => {
-  const [searchParams] = useSearchParams();
-  const keyword = searchParams.get('keyword') ?? '';
-
-  const navigate = useNavigate();
+  const { keyword, setKeywordParam } = useKeywordQuery();
 
   const handleSubmit = (event: SearchBarSubmitEvent) => {
     event.preventDefault();
     const { value } = event.target[0];
-    navigate(value ? `/?keyword=${value}` : '/');
+    setKeywordParam(value);
   };
 
   return (
