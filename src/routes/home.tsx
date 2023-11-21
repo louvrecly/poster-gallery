@@ -1,11 +1,9 @@
 import useSearchMovies from '../hooks/useSearchMovies';
 import MovieListView from '../components/MovieListView';
-import usePageQuery from '../hooks/usePageQuery';
 
 const Home = () => {
-  const { currentPage, setCurrentPage } = usePageQuery();
-
-  const { movies, pageCount, isLoading } = useSearchMovies(currentPage);
+  const { movies, pageCount, currentPage, isLoading, setCurrentPage } =
+    useSearchMovies();
 
   return (
     <MovieListView

@@ -3,11 +3,13 @@ import useMovieData from './useMovieData';
 import { parseMovieData } from '../helpers/movies';
 import GenresContext from '../contexts/genres';
 import useKeywordQuery from './useKeywordQuery';
+import usePageQuery from './usePageQuery';
 
-const useSearchMovies = (currentPage: number = 1) => {
+const useSearchMovies = () => {
   const { keyword } = useKeywordQuery();
   const { genreMap, selectedGenreIds, isLoadingGenres } =
     useContext(GenresContext);
+  const { currentPage, setCurrentPage } = usePageQuery();
 
   const { movieData, pageCount, isLoadingMovieData } = useMovieData(
     keyword,
@@ -28,9 +30,11 @@ const useSearchMovies = (currentPage: number = 1) => {
   return {
     movies,
     pageCount,
+    currentPage,
     isLoading,
     isLoadingGenres,
     isLoadingMovieData,
+    setCurrentPage,
   };
 };
 
