@@ -14,6 +14,7 @@ const usePageQuery = () => {
     },
     [setSearchParams],
   );
+
   return { currentPage, setCurrentPage };
 };
 

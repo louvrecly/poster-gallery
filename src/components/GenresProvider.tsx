@@ -31,6 +31,9 @@ const GenresProvider = ({ children }: GenresProviderProps) => {
           selectedGenreIds.push(genreId);
           searchParams.set('genres', selectedGenreIds.join(','));
         }
+
+        searchParams.delete('keyword');
+        searchParams.delete('page');
         return searchParams;
       });
     },
@@ -41,6 +44,8 @@ const GenresProvider = ({ children }: GenresProviderProps) => {
     () =>
       setSearchParams((searchParams) => {
         searchParams.delete('genres');
+        searchParams.delete('keyword');
+        searchParams.delete('page');
         return searchParams;
       }),
     [setSearchParams],

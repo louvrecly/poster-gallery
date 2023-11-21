@@ -11,6 +11,8 @@ const useKeywordQuery = () => {
         if (keyword) searchParams.set('keyword', keyword);
         else searchParams.delete('keyword');
 
+        searchParams.delete('genres');
+        searchParams.delete('page');
         return searchParams;
       }),
     [setSearchParams],
