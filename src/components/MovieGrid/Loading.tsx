@@ -2,9 +2,10 @@ import { useMemo } from 'react';
 import MovieGridContainer from './Container';
 import MovieGridItemContainer from './ItemContainer';
 import MovieCardLoading from './MovieCard/Loading';
+import getDummyItems from '../../helpers/getDummyItems';
 
 const MovieGridLoading = () => {
-  const dummyItems = useMemo(() => [...Array(8).keys()], []);
+  const dummyItems = useMemo(() => getDummyItems(8), []);
 
   return (
     <MovieGridContainer>
