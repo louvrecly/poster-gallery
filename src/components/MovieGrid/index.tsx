@@ -1,6 +1,7 @@
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+import MovieGridContainer from './Container';
+import MovieGridItemContainer from './ItemContainer';
 import MovieCard from './MovieCard';
 import Movie from '../../types/movie';
 
@@ -19,9 +20,9 @@ const MovieGrid = ({ movies }: MovieGridProps) => {
     );
 
   return (
-    <Grid container spacing={2}>
+    <MovieGridContainer>
       {movies.map((movie) => (
-        <Grid key={movie.id} item xs={12} sm={6} md={3}>
+        <MovieGridItemContainer key={movie.id}>
           <MovieCard
             title={movie.title}
             posterPath={movie.posterPath}
@@ -32,9 +33,9 @@ const MovieGrid = ({ movies }: MovieGridProps) => {
             voteCount={movie.voteCount}
             genres={movie.genres}
           />
-        </Grid>
+        </MovieGridItemContainer>
       ))}
-    </Grid>
+    </MovieGridContainer>
   );
 };
 
