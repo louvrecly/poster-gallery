@@ -1,8 +1,8 @@
-import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import MovieCardContainer from './Container';
 import InfoBlock from './InfoBlock';
 import GenreList from '../../GenreList';
 import Genre from '../../../types/genre';
@@ -31,10 +31,7 @@ const MovieCard = ({
   genres,
 }: MovieCardProps) => {
   return (
-    <Card
-      raised
-      sx={{ backgroundColor: 'grey.900', color: 'background.paper' }}
-    >
+    <MovieCardContainer>
       <CardMedia
         image={`${TMDB_IMAGE_URL}/t/p/w500${posterPath}`}
         sx={{ pt: '150%' }}
@@ -68,7 +65,7 @@ const MovieCard = ({
           <GenreList genres={genres} />
         </Stack>
       </CardContent>
-    </Card>
+    </MovieCardContainer>
   );
 };
 
