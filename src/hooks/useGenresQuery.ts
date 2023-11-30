@@ -21,8 +21,7 @@ const useGenresQuery = (genreMap: GenreMap, keyword: string = '') => {
             selectedGenreIds.filter((id) => id !== genreId).join(','),
           );
         } else {
-          selectedGenreIds.push(genreId);
-          searchParams.set('genres', selectedGenreIds.join(','));
+          searchParams.set('genres', [...selectedGenreIds, genreId].join(','));
         }
 
         searchParams.delete('keyword');
